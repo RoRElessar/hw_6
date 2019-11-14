@@ -21,10 +21,9 @@
 
   }
 
-  class Atm extends CreditCard {
+  class Atm {
 
     constructor () {
-      super()
       this._moneyAmount = 0
       this._bankNoteValues = {
         50: 0,
@@ -54,7 +53,7 @@
 
         balance += amount
         this._moneyAmount = balance
-        console.log(this._bankNoteValues)
+        console.log(this._bankNoteValues) // TODO remove this console log
         return 'You have successfully add money to ATM.'
       } else {
         return 'Something went wrong.'
@@ -75,7 +74,29 @@
     }
 
     withdrawCash = (card, amount) => {
+      let bankNotes = []
+      if (card._balance < amount) {
+        return 'You don\'t have enough money.'
+      } else if (this._moneyAmount < amount) {
+        return 'There is not enough money in the ATM.'
+      } else if (amount !== 0 && amount % 50 === 0 && card._balance >= amount && this._moneyAmount >= amount) {
+        const notes1000 = Math.floor(amount / 1000)
+        const notes500 = Math.floor((amount - (notes1000 * 1000)) / 500)
+        const notes200 = Math.floor((amount - ((notes1000 * 1000) + (notes500 * 500))) / 200)
+        const notes100 = Math.floor((amount - ((notes1000 * 1000) + (notes500 * 500) + (notes200 * 200))) / 100)
+        const notes50 = Math.floor((amount - ((notes1000 * 1000) + (notes500 * 500) + (notes200 * 200) + (notes100 * 100))) / 50)
 
+        bankNotes.push(notes1000)
+        bankNotes.push(notes500)
+        bankNotes.push(notes200)
+        bankNotes.push(notes100)
+        bankNotes.push(notes50)
+
+        card._balance -= amount
+        this._moneyAmount -= amount
+
+        console.log(bankNotes);
+      }
     }
 
   }
@@ -86,11 +107,16 @@
   console.log(creditCard.addMoney(500))
   console.log(creditCard.addMoney(500))
   console.log(creditCard.addMoney(100))
+  console.log(creditCard.addMoney(1000))
   console.log(creditCard.showBalance())
   console.log(atm.showBalance())
   console.log(atm.addMoney(500, [200, 200, 100]))
   console.log(atm.addMoney(500, [200, 200, 100]))
   console.log(atm.addMoney(500, [200, 200, 50, 50]))
+  console.log(atm.addMoney(10000, [500, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 1000, 1000, 1000]))
+  console.log(atm.showBalance())
+  console.log(atm.withdrawCash(creditCard, 2100))
+  console.log(creditCard.showBalance())
   console.log(atm.showBalance())
 
 })()
