@@ -4,11 +4,17 @@
   padding: 0;
 }
 
-.atm-box {
+.atm {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+}
+
+.atm-box-front {
   width: 400px;
   height: 800px;
   background-color: #18c02e;
-  margin: 50px auto;
+  margin-top: 50px;
   padding-top: 50px;
   border-radius: 10px;
 }
@@ -22,18 +28,34 @@
   padding-top: 20px;
 }
 
-#message {
+#message,
+#admin-message {
   text-align: center;
   margin-bottom: 10px;
+  padding: 0 5px;
 }
 
-#input {
+#input,
+#input-back {
   width: 150px;
   height: 50px;
   display: block;
   margin: 0 auto;
   font-size: 16px;
   padding: 0 10px;
+}
+
+.note-inputs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+.note-input-quantity {
+  display: none;
+  width: 40px;
+  height: 40px;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -46,7 +68,7 @@ input[type="number"] {
 }
 
 .label-row {
-  margin-top: 40px;
+  margin-top: 25px;
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
@@ -100,6 +122,20 @@ input[type="number"] {
   padding: 15px 0;
 }
 
+.row a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
 .row a:hover {
   background-color: #464646;
+}
+
+.atm-box-back {
+  width: 400px;
+  height: 800px;
+  background-color: #c0743c;
+  margin-top: 50px;
+  padding-top: 50px;
+  border-radius: 10px;
 }
