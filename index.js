@@ -380,6 +380,7 @@
   })
 
   atmBanknotesQuantityButton.addEventListener('click', function (e) {
+    hideInputNotes()
     numberInputBack.value = ''
     adminMessage.innerText = atm.getBanknotesQuantity()
     atmSubmitButton.classList.add('disabled')
