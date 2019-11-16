@@ -175,7 +175,7 @@
                 $this._banknoteValues[nominal] -= successResult[nominal]
               }
 
-              return `Thank you, here is your money - $${banknotesArray}`
+              return `Thank you, here is your money - $${amount}: ${banknotesArray}`
             }
 
             return 'Sorry, there are no available banknotes'
